@@ -5,7 +5,7 @@ import { notFound,errorHandler } from "./middleware/errorMiddleware.js";
 import connectDb from "./config/db.js";
 dotenv.config();
 connectDb()
-const app = express();
+const app = express()
 
 app.use('/api/users',userRouter)
 
