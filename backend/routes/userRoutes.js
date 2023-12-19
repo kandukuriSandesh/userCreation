@@ -4,7 +4,7 @@ import { userAuthHandler,registerUser,logoutUser,getUserProfile,updateUserProfil
 const router  = express.Router();
 
 router.get('/auth',userAuthHandler);
-router.get('/',registerUser);
+router.post('/',registerUser);
 router.get('/logout',logoutUser);
 router.route('/profile').get(getUserProfile).post(updateUserProfile);
 

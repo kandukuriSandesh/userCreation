@@ -7,8 +7,10 @@ dotenv.config();
 connectDb()
 const app = express()
 
-app.use('/api/users',userRouter)
+app.use(express.json());
+app.use(express.urlencoded());
 
+app.use('/api/users',userRouter);
 const port = process.env.PORT || 5000
 
 app.use(notFound);
