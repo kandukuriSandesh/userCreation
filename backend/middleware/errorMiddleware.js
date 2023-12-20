@@ -1,7 +1,5 @@
 const notFound = (req,res,next) => {
-    console.log(req.cookies)
      const error = new Error(`Not found ${req.method} - ${req.originalUrl}`);
-    // console.log(req)
      res.status(404);
      next(error)
 }
