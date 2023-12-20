@@ -3,10 +3,12 @@ import dotenv from 'dotenv';
 import userRouter from "./routes/userRoutes.js";
 import { notFound,errorHandler } from "./middleware/errorMiddleware.js";
 import connectDb from "./config/db.js";
+import cookieParser from "cookie-parser";
 dotenv.config();
 connectDb()
 const app = express()
 
+app.use(cookieParser())
 app.use(express.json());
 app.use(express.urlencoded());
 
