@@ -12,8 +12,8 @@ import bcrypt from 'bcryptjs'
 const userAuthHandler =expressAsyncHandler(async (req,res) => {
     
     const {name,email,password} = req.body;
+    console.log({email,password})
     const userFound = await User.findOne({email:email})
-   // console.log(userFound)
     if(userFound){
         let passwordMatched = await bcrypt.compare(password,userFound.password)
         if(passwordMatched){
@@ -27,7 +27,6 @@ const userAuthHandler =expressAsyncHandler(async (req,res) => {
         res.status(404).json({message:"Email or Password is Incorrect"})
     }
     
-    //res.status(200).json({message:'Successfully Integrated'})
 })
 
 /*
@@ -87,12 +86,10 @@ const getUserProfile = expressAsyncHandler(async(req,res) => {
             email:req.user.email,
             id:req.user._id
         }
-       // console.log(user)
         res.status(200).json(user)
     }else{
         res.status(400).json({message:'Unknown Error'})
     }
-    //res.status(200).json({message:'user profile fetched'});
 })
 
 /*
