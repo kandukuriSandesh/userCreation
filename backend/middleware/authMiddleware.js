@@ -7,7 +7,6 @@ const protect = expressAsyncHandler(async (req,res,next) => {
   let token  = jwt.verify(req.cookies.jwt,process.env.JWT_SECRET);
   if(token){
       const user = await User.findById(token.userId).select('-password');
-      //console.log(user)
       req.user = user
       next()
   }else{
