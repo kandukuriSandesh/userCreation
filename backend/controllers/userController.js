@@ -18,7 +18,11 @@ const userAuthHandler =expressAsyncHandler(async (req,res) => {
         let passwordMatched = await bcrypt.compare(password,userFound.password)
         if(passwordMatched){
             generateToken(res,userFound._id)
-            res.status(201).json({message:"User Succesfully Logged In"})
+            res.status(201).json({message:{
+                name:userFound.name,
+                email:userFound.email,
+                createdAt:userFound.createdAt
+            }})
         }else{
             res.status(400);
             throw new Error("Invalid Password")
@@ -69,7 +73,7 @@ const logoutUser = expressAsyncHandler(async(req,res) => {
     res.cookie('jwt','',{
         expiresIn:"0ms"
     });
-    res.status(200).json({message:'Succesfully Looged Out'});
+    res.status(200).json({message:'Succesfully Logged Out'});
     //res.status(200).json({message:'user Logged Out'});
 })
 

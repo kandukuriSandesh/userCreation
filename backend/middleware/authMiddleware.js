@@ -3,6 +3,7 @@ import User from '../model/userModel.js';
 import expressAsyncHandler from 'express-async-handler';
 
 const protect = expressAsyncHandler(async (req,res,next) => {
+  console.log(req.cookies)
   if(!req.cookies.jwt) throw new Error ('Token is Required')  
   let token  = jwt.verify(req.cookies.jwt,process.env.JWT_SECRET);
   if(token){
